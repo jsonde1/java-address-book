@@ -9,7 +9,15 @@ public class AddressBook {
         this.contactList.add(contact);
     }
 
-    public ArrayList<Contact> getContactList() {
-        return contactList;
+    public Contact[] getContactList() {
+        return this.contactList.toArray(new Contact[this.contactList.size()]);
+    }
+
+    public Contact[] searchByName(String name) {
+        ArrayList<Contact> contactList = new ArrayList<Contact>();
+        for (Contact contact : this.contactList) {
+            if(contact.getName().contains(name)) contactList.add(contact);
+        }
+        return contactList.toArray(contactList.toArray(new Contact[contactList.size()]));
     }
 }

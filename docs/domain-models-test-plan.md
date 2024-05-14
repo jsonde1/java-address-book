@@ -29,7 +29,7 @@
 
 **Test Plan**
 
-1. Should be shown operations returned to user when logged into account
+1. searchByName should successfully return contacts that match the string parameter
 
 <br>
 
