@@ -17,6 +17,7 @@ public class AddressBookTest {
     class AddressBookAddTests {
 
         @Test
+        @DisplayName("Valid Contact Obj Successfully Added To AddressBook")
         public void ValidContactObjSuccessfullyAddedToAddressBook() {
             //Arrange
             AddressBook addressBook = new AddressBook();
@@ -33,8 +34,8 @@ public class AddressBookTest {
     @DisplayName(("Address Book Search Tests"))
     class AddressBookSearchTests {
         @Test
-        @DisplayName("SearchbyNameShouldSuccessfullyReturnMatchingContacts")
-        public void testCohortConstructorThrowsIllegalArgumentExceptionWhenCohortIdIsNull() {
+        @DisplayName("Search By Name Should Successfully Return Matching Contacts")
+        public void SearchByNameShouldSuccessfullyReturnMatchingContacts() {
             // Arrange
             AddressBook addressBook = new AddressBook();
             Contact mockContact = mock(Contact.class);
@@ -47,6 +48,29 @@ public class AddressBookTest {
             Contact[] contacts = addressBook.searchByName("Tim");
             // Assert
             assertEquals("Tim", contacts[0].getName());
+        }
+
+    }
+
+    @Nested
+    @DisplayName(("Address Book Delete Tests"))
+    class AddressBookDeleteTests {
+        @Test
+        @DisplayName("DeleteContactShouldSuccessfullyDeleteContact")
+        public void DeleteContactShouldSuccessfullyDeleteContact() {
+            // Arrange
+            AddressBook addressBook = new AddressBook();
+            Contact mockContact = mock(Contact.class);
+            Contact mockContact2 = mock(Contact.class);
+            Mockito.when(mockContact.getPhoneNumber()).thenReturn("07393664832");
+            Mockito.when(mockContact2.getPhoneNumber()).thenReturn("07493283642");
+            // Act
+            addressBook.addContact(mockContact);
+            addressBook.addContact(mockContact2);
+            addressBook.deleteContact("07393664832");
+            // Assert
+            Contact[] contacts = addressBook.getContactList();
+            assertEquals(1, contacts.length);
         }
 
     }

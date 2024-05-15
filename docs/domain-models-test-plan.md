@@ -6,10 +6,10 @@
 - As a User, I want to be able to add a contact to address book, so I can access their contact details easily
 **Domain Model**
 
-| Object      | Properties                                          | Message                | Output   |
-|:------------|:----------------------------------------------------|:-----------------------|:---------|
-| AddressBook | contacts@Array[Contact]                             | addContact(@Contact)   | @void    |
-| Contact     | name@String<br/>email@String<br/>phoneNumber@String | constructor(@String*3) | @Contact |
+| Object      | Properties                                          | Message              | Output   |
+|:------------|:----------------------------------------------------|:---------------------|:---------|
+| AddressBook | contacts@Array[Contact]                             | addContact(@Contact) | @void    |
+| Contact     | name@String<br/>email@String<br/>phoneNumber@String | constructor(@String) | @Contact |
 
 **Test Plan**
 
@@ -39,15 +39,15 @@
 
 **Domain Model**
 
-| Object      | Properties              | Message                             | Output |
-|:------------|:------------------------|:------------------------------------|:-------|
-| AddressBook | contacts@Array[Contact] | removeContactbyEmail(@String)       | @Void  |
-|             |                         | removeContactByPhoneNumber(@String) |        |
-| Contact     | name@String             |                                     |        |
+| Object      | Properties              | Message                | Output |
+|:------------|:------------------------|:-----------------------|:-------|
+| AddressBook | contacts@Array[Contact] | removeContact(@String) | @Void  |
+|             |                         |                        |        |
+| Contact     |                         |                        |        |
 
 **Test Plan**
 
-1. Return Balance when getbalance() is called
+1. Removes contact associated with phone number when removeContact is called
 
 <br>
 

@@ -8,7 +8,7 @@ public class AddressBook {
     public void addContact(Contact contact) {
         this.contactList.add(contact);
     }
-
+    //Contact list is returned as Array as it is immutable
     public Contact[] getContactList() {
         return this.contactList.toArray(new Contact[this.contactList.size()]);
     }
@@ -19,5 +19,14 @@ public class AddressBook {
             if(contact.getName().contains(name)) contactList.add(contact);
         }
         return contactList.toArray(contactList.toArray(new Contact[contactList.size()]));
+    }
+
+    public void deleteContact(String number) {
+        for (Contact contact : this.contactList) {
+            if(contact.getPhoneNumber().equals(number)) {
+                contactList.remove(contact);
+                break;
+            }
+        }
     }
 }
