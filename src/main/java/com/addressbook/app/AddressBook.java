@@ -29,4 +29,13 @@ public class AddressBook {
             }
         }
     }
+
+    public void editContact(String oldNumber, String newNumber) {
+        for (Contact contact : this.contactList) {
+            if(contact.getPhoneNumber().equals(oldNumber)) {
+                contact.setPhoneNumber(newNumber);
+                break;
+            }
+        }
+    }
 }

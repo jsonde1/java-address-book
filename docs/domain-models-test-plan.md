@@ -63,7 +63,7 @@
 
 **Test Plan**
 
-1. 
+1. A Contacts Details should be successfully edited when edit contact details is called
 
 <br>
 

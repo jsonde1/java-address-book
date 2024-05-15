@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 public class AddressBookTest {
 
@@ -71,6 +71,27 @@ public class AddressBookTest {
             // Assert
             Contact[] contacts = addressBook.getContactList();
             assertEquals(1, contacts.length);
+        }
+
+    }
+
+    @Nested
+    @DisplayName(("Address Book Edit Tests"))
+    class AddressBookEditTests {
+        //TEST MAY NEED TO BE MODIFIED FOR LOOSER COUPLING
+        @Test
+        @DisplayName("Edit Contact Should Successfully Call Contact Setter")
+        public void EditContactShouldSuccessfullyCallContactSetter() {
+            // Arrange
+            AddressBook addressBook = new AddressBook();
+            Contact mockContact = mock(Contact.class);
+            Mockito.when(mockContact.getPhoneNumber()).thenReturn("07393664832");
+            doNothing().when(mockContact).setPhoneNumber("073936664832");
+            // Act
+            addressBook.addContact(mockContact);
+            addressBook.editContact("07393664832", "073936664832");
+            // Assert
+            verify(mockContact, times(1)).setPhoneNumber("073936664832");
         }
 
     }
