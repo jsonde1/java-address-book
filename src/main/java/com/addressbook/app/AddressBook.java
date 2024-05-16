@@ -5,7 +5,17 @@ import java.util.ArrayList;
 public class AddressBook {
     protected ArrayList<Contact> contactList = new ArrayList<Contact>();
 
+    private boolean duplicatePhoneNumber(Contact contact) {
+        for (Contact c : contactList) {
+            if (c.getPhoneNumber().equals(contact.getPhoneNumber())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void addContact(Contact contact) {
+        if (duplicatePhoneNumber(contact)) return;
         this.contactList.add(contact);
     }
     //Contact list is returned as Array as it is immutable

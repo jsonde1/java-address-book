@@ -79,7 +79,7 @@
 
 **Test Plan**
 
-1. 
+1. Check that contact with existing number is not added to address book
 
 
 <br>
