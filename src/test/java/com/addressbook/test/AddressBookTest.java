@@ -30,7 +30,7 @@ public class AddressBookTest {
         }
 
         @Test
-        @DisplayName(" Valid Contact Obj with duplicate number is Not Added To AddressBook")
+        @DisplayName(" Valid Contact Obj with existing number is Not Added To AddressBook")
         public void DuplicateNumberValidContactObjisNotAddedToAddressBook() {
             //Arrange
             AddressBook addressBook = new AddressBook();
@@ -38,6 +38,25 @@ public class AddressBookTest {
             Contact mockContact2 = mock(Contact.class);
             Mockito.when(mockContact.getPhoneNumber()).thenReturn("07462352643");
             Mockito.when(mockContact2.getPhoneNumber()).thenReturn("07462352643");
+            //Act
+            addressBook.addContact(mockContact);
+            addressBook.addContact(mockContact2);
+            Contact[] contacts = addressBook.getContactList();
+            //Assert
+            assertEquals(1,contacts.length);
+        }
+
+        @Test
+        @DisplayName(" Valid Contact Obj with existing email is Not Added To AddressBook")
+        public void DuplicateEmailValidContactObjisNotAddedToAddressBook() {
+            //Arrange
+            AddressBook addressBook = new AddressBook();
+            Contact mockContact = mock(Contact.class);
+            Contact mockContact2 = mock(Contact.class);
+            Mockito.when(mockContact.getPhoneNumber()).thenReturn("07462352643");
+            Mockito.when(mockContact2.getPhoneNumber()).thenReturn("07946352632");
+            Mockito.when(mockContact.getEmail()).thenReturn("John@Smith.com");
+            Mockito.when(mockContact2.getEmail()).thenReturn("John@Smith.com");
             //Act
             addressBook.addContact(mockContact);
             addressBook.addContact(mockContact2);
@@ -61,6 +80,8 @@ public class AddressBookTest {
             Mockito.when(mockContact2.getName()).thenReturn("Tim");
             Mockito.when(mockContact.getPhoneNumber()).thenReturn("07837283422");
             Mockito.when(mockContact2.getPhoneNumber()).thenReturn("07836241521");
+            Mockito.when(mockContact.getEmail()).thenReturn("johnny@job.com");
+            Mockito.when(mockContact2.getEmail()).thenReturn("tim@barry.com");
             // Act
             addressBook.addContact(mockContact);
             addressBook.addContact(mockContact2);
@@ -83,6 +104,8 @@ public class AddressBookTest {
             Contact mockContact2 = mock(Contact.class);
             Mockito.when(mockContact.getPhoneNumber()).thenReturn("07393664832");
             Mockito.when(mockContact2.getPhoneNumber()).thenReturn("07493283642");
+            Mockito.when(mockContact.getEmail()).thenReturn("johnny@job.com");
+            Mockito.when(mockContact2.getEmail()).thenReturn("tim@barry.com");
             // Act
             addressBook.addContact(mockContact);
             addressBook.addContact(mockContact2);
