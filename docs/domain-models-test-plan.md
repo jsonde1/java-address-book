@@ -97,7 +97,7 @@
 
 **Test Plan**
 
-1. 
+1. Check that contact with existing email is not added to address book
 
 <br>
 
@@ -113,4 +113,4 @@
 
 **Test Plan**
 
-1.
+1. Check that all contacts are returned by addressBook

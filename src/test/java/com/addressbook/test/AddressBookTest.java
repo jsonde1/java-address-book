@@ -26,7 +26,7 @@ public class AddressBookTest {
             addressBook.addContact(mockContact);
             Contact[] contacts = addressBook.getContactList();
             //Assert
-            assertEquals(1,contacts.length);
+            assertEquals(mockContact,contacts[0]);
         }
 
         @Test
@@ -134,6 +134,25 @@ public class AddressBookTest {
             addressBook.editContact("07393664832", "073936664832");
             // Assert
             verify(mockContact, times(1)).setPhoneNumber("073936664832");
+        }
+
+    }
+
+    @Nested
+    @DisplayName(("Address Book View Tests"))
+    class AddressBookViewTests {
+        @Test
+        @DisplayName("GetAllContacts Should Successfully Return All Contacts")
+        public void GetAllContactsShouldSuccessfullyReturnAllContacts() {
+            // Arrange
+            //Arrange
+            AddressBook addressBook = new AddressBook();
+            Contact mockContact = mock(Contact.class);
+            //Act
+            addressBook.addContact(mockContact);
+            Contact[] contacts = addressBook.getContactList();
+            //Assert
+            assertEquals(1,contacts.length);
         }
 
     }
