@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -122,18 +123,22 @@ public class AddressBookTest {
     class AddressBookEditTests {
         //TEST MAY NEED TO BE MODIFIED FOR LOOSER COUPLING
         @Test
-        @DisplayName("Edit Contact Should Successfully Call Contact Setter")
+        @DisplayName("Edit Contact Should Successfully Call Contact Setter when given valid input")
         public void EditContactShouldSuccessfullyCallContactSetter() {
             // Arrange
             AddressBook addressBook = new AddressBook();
             Contact mockContact = mock(Contact.class);
-            Mockito.when(mockContact.getPhoneNumber()).thenReturn("07393664832");
-            doNothing().when(mockContact).setPhoneNumber("073936664832");
+            String[] input = {"07393664832", "John Doe", "07563888342", "john@apple.com"};
+            Mockito.when(mockContact.getPhoneNumber()).thenReturn(input[0]);
             // Act
             addressBook.addContact(mockContact);
-            addressBook.editContact("07393664832", "073936664832");
+            addressBook.editContact(input[0], input[1], input[2], input[3]);
             // Assert
-            verify(mockContact, times(1)).setPhoneNumber("073936664832");
+            assertAll(
+                    () -> verify(mockContact, times(1)).setName("John Doe"),
+                    () -> verify(mockContact, times(1)).setPhoneNumber(eq("07563888342")),
+                    () -> verify(mockContact, times(1)).setEmail(eq("john@apple.com"))
+            );
         }
 
     }

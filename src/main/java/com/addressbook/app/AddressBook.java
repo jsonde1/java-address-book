@@ -18,36 +18,45 @@ public class AddressBook {
         if (duplicateContactDetails(contact)) return;
         this.contactList.add(contact);
     }
+
     //Contact list is returned as Array so it is immutable
     public Contact[] getContactList() {
-        return this.contactList.toArray(new Contact[this.contactList.size()]);
+        return this.contactList.toArray(new Contact[0]);
     }
 
     public Contact[] searchByName(String name) {
-        ArrayList<Contact> contactList = new ArrayList<Contact>();
+        ArrayList<Contact> matchingContacts = new ArrayList<Contact>();
         for (Contact contact : this.contactList) {
-            if(contact.getName().contains(name)) contactList.add(contact);
+            if(contact.getName().contains(name)) matchingContacts.add(contact);
         }
-        return contactList.toArray(contactList.toArray(new Contact[contactList.size()]));
+        //maybe put toArray into own function?
+        return matchingContacts.toArray(matchingContacts.toArray(new Contact[0]));
     }
 
     //Look for matching number within contact list and deletes the associated Obj
     public void deleteContact(String number) {
+        contactList.remove(getContactByNumber(number));
+    }
+
+    private void setDetails(Contact contact, String name, String phoneNumber, String email) {
+            contact.setName(name);
+            contact.setPhoneNumber(phoneNumber);
+            contact.setEmail(email);
+    }
+
+    private Contact getContactByNumber(String number) {
         for (Contact contact : this.contactList) {
             if(contact.getPhoneNumber().equals(number)) {
-                contactList.remove(contact);
-                break;
+                return contact;
             }
         }
+        return null;
     }
 
     //Edit email and name functionality to be added
-    public void editContact(String oldNumber, String newNumber) {
-        for (Contact contact : this.contactList) {
-            if(contact.getPhoneNumber().equals(oldNumber)) {
-                contact.setPhoneNumber(newNumber);
-                break;
-            }
-        }
+    public void editContact(String oldNumber, String name, String newNumber, String email) {
+        Contact contact = getContactByNumber(oldNumber);
+        if (contact == null) UI.printLine("Contact could not be found"); //Check needs to be done by Validator
+        else setDetails(contact, name, newNumber, email); //UI.PrintLine("No details have been given.");
     }
 }
