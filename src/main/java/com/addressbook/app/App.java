@@ -6,10 +6,11 @@ public class App {
         //initialises object to receive user input
         Scanner sc = new Scanner(System.in);
         AddressBook addressBook = new AddressBook();
-        do{
+        String option;
+        do {
             UI.mainMenu();
             //Prompts the user for input
-            String option = sc.next();
+            option = sc.nextLine();
             /* Will action AddressBook operation based on user input */
             switch (option) {
                 case "1":
@@ -19,7 +20,7 @@ public class App {
                     break;
                 case "2":
                     //UI.searchbyName(scanner) to be done
-                    String name = sc.next();
+                    String name = sc.nextLine();
                     UI.printContacts(addressBook.searchByName(name));
                     break;
                 case "3":
@@ -41,6 +42,6 @@ public class App {
             }
         }
         // Will loop continuously until exited by the user
-        while (!sc.next().equals("6"));
+        while (!option.equals("6"));
     }
 }

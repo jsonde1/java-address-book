@@ -24,17 +24,17 @@ public class UI {
     //returns array of user input to be passed into new Contact
     public static String[] addContactUI(Scanner sc) {
         System.out.println("Please enter the name of the contact you would like to add");
-        String name = sc.next();
+        String name = sc.nextLine();
         System.out.println("Please enter the phone number of the contact you would like to add");
-        String phone = sc.next();
+        String phone = sc.nextLine();
         System.out.println("Please enter the email of the contact you would like to add");
-        String email = sc.next();
+        String email = sc.nextLine();
         return new String[] {name, phone, email};
     }
 
     public static String deleteContactUI(Scanner sc) {
         System.out.println("Please enter the number of the contact you would like to delete");
-        return sc.next();
+        return sc.nextLine();
     }
 
     public static void printContacts(Contact[] contacts) {
