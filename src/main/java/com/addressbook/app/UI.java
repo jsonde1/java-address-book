@@ -56,5 +56,10 @@ public class UI {
         }
     }
 
+    public static boolean deleteAll(Scanner sc) {
+        System.out.println("Are you sure you want to delete all contacts? Type 'y' to continue or press enter to abort.");
+        String confirm = sc.nextLine();
+        return confirm.equals("y");
+    }
 }
 

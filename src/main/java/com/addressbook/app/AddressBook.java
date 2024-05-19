@@ -96,4 +96,12 @@ public class AddressBook {
         Contact contact = getContactByNumber(details[0]);
         if(contact != null) setDetails(contact, details[1], details[2], details[3]);
     }
+
+    public void deleteAllContact(boolean b) {
+        if(b) {
+            contactList.clear();
+            UI.printLine("All contacts have been deleted");
+        }
+        else UI.printLine("Delete all operation has been aborted");
+    }
 }

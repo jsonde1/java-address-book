@@ -212,6 +212,49 @@ public class AddressBookTest {
             assertEquals(1, contacts.length);
         }
 
+        @Test
+        @DisplayName("Delete All Contact Should Successfully Delete Contacts when confirmed by user")
+        public void DeleteALlContactShouldSuccessfullyDeleteContacts() {
+            // Arrange
+            AddressBook addressBook = new AddressBook(mockValidator);
+            Contact mockContact = mock(Contact.class);
+            Contact mockContact2 = mock(Contact.class);
+            getMockDetails(mockContact,null,"07837283422","johnny@job.com");
+            // Act
+            addressBook.addContact(mockContact);
+            addressBook.deleteAllContact(true);
+            // Assert
+            Contact[] contacts = addressBook.getContactList();
+            assertEquals(0, contacts.length);
+        }
+
+        @Test
+        @DisplayName("Delete All Contact Should Successfully Run when no contacts are in address Book")
+        public void DeleteALlContactShouldSuccessfullyRunWhenNoContacts() {
+            // Arrange
+            AddressBook addressBook = new AddressBook(mockValidator);
+            // Act
+            addressBook.deleteAllContact(true);
+            // Assert
+            Contact[] contacts = addressBook.getContactList();
+            assertEquals(0, contacts.length);
+        }
+
+        @Test
+        @DisplayName("Delete All Contact Should Not Delete Contacts when not confirmed by user")
+        public void DeleteALlContactShouldNotDeleteContacts() {
+            // Arrange
+            AddressBook addressBook = new AddressBook(mockValidator);
+            Contact mockContact = mock(Contact.class);
+            getMockDetails(mockContact,null,"07837283422","johnny@job.com");
+            // Act
+            addressBook.addContact(mockContact);
+            addressBook.deleteAllContact(false);
+            // Assert
+            Contact[] contacts = addressBook.getContactList();
+            assertEquals(1, contacts.length);
+        }
+
     }
 
     @Nested

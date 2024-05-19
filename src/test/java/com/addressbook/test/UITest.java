@@ -121,7 +121,41 @@ public class UITest {
 
 
     }
+    @Nested
+    @DisplayName("UI Delete Tests")
+    class UIDeleteTests {
+        @Test
+        @DisplayName("Check that deleteAllUI returns true if user confirms")
+        public void deleteAllUIReturnsTrue() {
+            Scanner sc = Mockito.mock(Scanner.class);
+            Mockito.when(sc.nextLine()).thenReturn("y");
+            // Act
+            boolean confirm = UI.deleteAll(sc);
+            //Assert
+            assertTrue(confirm);
+        }
+        @Test
+        @DisplayName("Check that deleteAllUI returns false if user does not confirm")
+        public void deleteAllUIReturnsFalse() {
+            Scanner sc = Mockito.mock(Scanner.class);
+            Mockito.when(sc.nextLine()).thenReturn("");
+            // Act
+            boolean confirm = UI.deleteAll(sc);
+            //Assert
+            assertFalse(confirm);
+        }
 
+        @Test
+        @DisplayName("Check that deleteAllUI returns false if user gives invalid input")
+        public void deleteAllUIReturnsFalseInvalidInput() {
+            Scanner sc = Mockito.mock(Scanner.class);
+            Mockito.when(sc.nextLine()).thenReturn("Nobutyesbutno");
+            // Act
+            boolean confirm = UI.deleteAll(sc);
+            //Assert
+            assertFalse(confirm);
+        }
+    }
     @Nested
     @DisplayName("UI Return Tests")
     class UIReturnTests {

@@ -141,3 +141,21 @@
 2. Check that empty array is return when no contacts in address book ✔
 3. Check that no contacts are printed if AddressBook is empty ✔
 4. Check that printContactsUI prints all contacts given ✔
+
+
+**Additionals**
+
+### User Story 8
+- As a User, I want to delete all contacts at once, so that I can start afresh
+
+**Test Plan**
+1. Check UI returns true when user confirms
+2. Check UI returns false when user doesn't confirm
+3. Check UI returns false when user gives invalid input
+4. Check addressbook deletes contacts when UI returns true
+5. Check addressbook deletes contacts when addressbook is empty
+6. Check addressbook doesn't delete contacts when UI returns true
+
+**AI Documentation**
+![Alt text](./img/AI_Delete01.png?raw=true "AI documentation of delete all")
+![Alt text](./img/AI_Delete02.png?raw=true "AI documentation of delete all")
