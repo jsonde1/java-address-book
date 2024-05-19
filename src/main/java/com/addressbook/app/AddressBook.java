@@ -104,4 +104,15 @@ public class AddressBook {
         }
         else UI.printLine("Delete all operation has been aborted");
     }
+
+    public Contact[] searchByEmail(String email) {
+        ArrayList<Contact> matchingContacts = new ArrayList<>();
+        if (!email.isEmpty()) {
+            for (Contact contact : this.contactList) {
+                if (contact.getEmail().toLowerCase().contains(email.toLowerCase())) matchingContacts.add(contact);
+            }
+        }
+        if (matchingContacts.isEmpty()) UI.printLine("No Matching Contacts Found\n");
+        return matchingContacts.toArray(matchingContacts.toArray(new Contact[0]));
+    }
 }

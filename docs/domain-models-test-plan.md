@@ -159,3 +159,17 @@
 **AI Documentation**
 ![Alt text](./img/AI_Delete01.png?raw=true "AI documentation of delete all")
 ![Alt text](./img/AI_Delete02.png?raw=true "AI documentation of delete all")
+
+### User Story 9
+- As a User, I want to search for contacts by email, so that I can find contacts via their email
+
+**Test Plan**
+1. Check Search by email returns matching contacts
+2. check search by email returns empty when no matching contacts found
+3. check search by email handles empty input correctly
+4. check search by email is case-insensitive
+5. check search by email returns partial matches
+
+**AI Documentation**
+![Alt text](./img/AI_EmailSearch01.png?raw=true "AI documentation of email search")
+![Alt text](./img/AI_EmailSearch02.png?raw=true "AI documentation of email search")

@@ -1,6 +1,6 @@
 package com.addressbook.app;
 import java.util.Scanner;
-
+//Add SEARCH BY EMAIL
 public class App {
     public static void main(String[] args) {
         //initialises object to receive user input
