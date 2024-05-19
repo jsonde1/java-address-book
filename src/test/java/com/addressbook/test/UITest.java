@@ -32,23 +32,6 @@ public class UITest {
     }
 
     @Nested
-    @DisplayName("UIConstructorTests")
-    class UIConstructorTests {
-
-        @DisplayName("Check that UI class cannot be instantiated")
-        public void UIClassCannotBeInstantiated() {
-            //Arrange
-
-            // Act
-            //I ui = new UI();
-            //Assert
-            //assertThrows(ui);
-        }
-
-
-    }
-
-    @Nested
     class UIPrintTests {
 
         @Test
@@ -58,16 +41,8 @@ public class UITest {
             // Act
             UI.mainMenu();
             //Assert
-            assertEquals("""
-                    Welcome to your AddressBook!\s
-                     Please type in the number of the option you would like to access! \
-
-                     1.Add a Contact\s
-                     2.Search for Contact\s
-                     3.Delete Contact\s
-                     4.Update Contact\s
-                     5.Show All Contacts\s
-                     6.Exit""", outContent.toString().trim());
+            assertEquals("Please type in the number of the option you would like to access! " +
+            "\n 1.Add a Contact \n 2.Search for Contact \n 3.Delete Contact \n 4.Update Contact \n 5.Show All Contacts \n 6.Exit", outContent.toString().trim());
         }
 
         @Test
@@ -80,17 +55,6 @@ public class UITest {
             assertEquals("hello hi", outContent.toString().trim());
         }
 
-        //No Longer needed
-        @DisplayName("Check that DeleteContact prints the correct text")
-        public void DeleteContactPrintsCorrectText() {
-            //Arrange
-            String input = "07546746370";
-            Scanner sc = new Scanner(new ByteArrayInputStream(input.getBytes()));
-            // Act
-            UI.deleteContactUI(sc);
-            //Assert
-            assertEquals("Please enter the number of the contact you would like to delete", outContent.toString().trim());
-        }
 
         @Test
         @DisplayName("Check that printContacts prints the correct text")
@@ -110,6 +74,17 @@ public class UITest {
                     Phone Number: 07987463527\
 
                     Email: john.doe@gmail.com""", outContent.toString().trim());
+        }
+
+        @Test
+        @DisplayName("Check that printContacts prints nothing when given empty array")
+        public void printContactsPrintsNothingWhenGivenEmptyArray() {
+            //Arrange
+            Contact[] contacts = {};
+            // Act
+            UI.printContacts(contacts);
+            //Assert
+            assertEquals("", outContent.toString().trim());
         }
 
         @Test
@@ -141,11 +116,7 @@ public class UITest {
             // Act
             UI.editContactUI(sc);
             //Assert
-            assertEquals("""
-                    Please enter the saved number of the contact you would like to edit
-                    Please enter the new name for the contactor press enter to leave it unchanged.
-                    Please enter the new phone number for the contactor press enter to leave it unchanged.
-                    Please enter the new email for the contactor press enter to leave it unchanged.""", outContent.toString().trim().replace("\r",""));
+            assertEquals("Please enter the saved number of the contact you would like to edit\rPlease enter the new name for the contact or press enter to leave it unchanged.\rPlease enter the new phone number for the contact or press enter to leave it unchanged.\rPlease enter the new email for the contact or press enter to leave it unchanged.".replace("\r",""), outContent.toString().trim().replace("\r",""));
         }
 
 
@@ -170,20 +141,6 @@ public class UITest {
                     () -> assertEquals(input[2], output[2])
             );
         }
-
-        //No Longer Needed
-        @DisplayName("Check that deleteContactUI returns user input")
-        public void deleteContactUIReturnsUserInput() {
-            //Arrange
-            Scanner sc = Mockito.mock(Scanner.class);
-            Mockito.when(sc.nextLine()).thenReturn("07583746374");
-            // Act
-            String output = UI.deleteContactUI(sc);
-            //Assert
-            assertEquals("07583746374",output);
-
-        }
-
 
     }
 }
