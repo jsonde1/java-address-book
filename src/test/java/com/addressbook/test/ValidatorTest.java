@@ -22,6 +22,37 @@ public class ValidatorTest {
             assertTrue(actual);
         }
 
+        @Test
+        @DisplayName("validName should return true if extreme input is valid")
+        public void validNameTrueWhenExtremeInputIsValid() {
+            //Arrange
+            Validator validator = new Validator();
+            //Act
+            boolean actual = validator.validName("dsfjhfdsgkjijgdkjghdhjtsgntrgufhjgdjhghughduhruhgufnhjfudhfurtg fgiduiorehnuhreuheurhuoireuhhfgtocuifd");
+            //Assert
+            assertTrue(actual);
+        }
 
+        @Test
+        @DisplayName("validName should return false if input is not valid")
+        public void validNameFalseWhenInputIsInvalid() {
+            //Arrange
+            Validator validator = new Validator();
+            //Act
+            boolean actual = validator.validName("Joe-/ Bloggs");
+            //Assert
+            assertFalse(actual);
+        }
+
+        @Test
+        @DisplayName("validName should return false if extreme input is not valid")
+        public void validNameFalseWhenExtremeInputIsInvalid() {
+            //Arrange
+            Validator validator = new Validator();
+            //Act
+            boolean actual = validator.validName("dsfjhfdsgkjijgdkjghdhjtsgntrgufhjgdjhghughduhruhgufnhjfudhfurtg ./ dsfjhfdsgkjijgdkjghdhjtsgntrgufrtfgdgdfhssdhjsduhruhgufnhjfudhfurtg");
+            //Assert
+            assertFalse(actual);
+        }
     }
 }
