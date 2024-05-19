@@ -80,7 +80,7 @@ public class UITest {
             assertEquals("hello hi", outContent.toString().trim());
         }
 
-        @Test
+        //No Longer needed
         @DisplayName("Check that DeleteContact prints the correct text")
         public void DeleteContactPrintsCorrectText() {
             //Arrange
@@ -171,7 +171,7 @@ public class UITest {
             );
         }
 
-        @Test
+        //No Longer Needed
         @DisplayName("Check that deleteContactUI returns user input")
         public void deleteContactUIReturnsUserInput() {
             //Arrange

@@ -14,32 +14,37 @@ public class App {
             /* Will action AddressBook operation based on user input */
             switch (option) {
                 case "1":
+                    //AddContact
                     String[] contactDetails = UI.addContactUI(sc);
                     Contact contact = new Contact(contactDetails[0], contactDetails[1], contactDetails[2]);
                     addressBook.addContact(contact);
                     break;
                 case "2":
-                    //UI.searchbyName(scanner) to be done
-                    String name = sc.nextLine();
+                    //SearchByName
+                    String name = UI.printLine("Please enter the name of the contact you are looking for: ", sc);
                     UI.printContacts(addressBook.searchByName(name));
                     break;
                 case "3":
-                    String number = UI.deleteContactUI(sc);
+                    //DeleteContact
+                    String number = UI.printLine("Please enter the number of the contact you would like to delete: ", sc);
                     addressBook.deleteContact(number);
                     break;
                 case "4":
+                    //EditContact
                     String[] details = UI.editContactUI(sc);
                     addressBook.editContact(details);
                     break;
                 case "5":
+                    //PrintAllContacts
                     UI.printContacts(addressBook.getContactList());
                     break;
                 case "6":
+                    //Exit
                     UI.printLine("This Address Book will now be closed.");
                     break;
                 default:
+                    //Invalid
                     UI.printLine("Please Enter a Valid Option");
-                    //VerifyOption(option, addressBook);
             }
         }
         // Will loop continuously until exited by the user

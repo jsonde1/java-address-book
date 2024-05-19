@@ -17,6 +17,12 @@ public class UI {
         System.out.println(s);
     }
 
+    //Overload used where input is also needed
+    public static String printLine(String s, Scanner sc) {
+        System.out.println(s);
+        return sc.nextLine();
+    }
+
     private void VerifyOption(Scanner sc, AddressBook addressBook ) {
         // code block
     }
