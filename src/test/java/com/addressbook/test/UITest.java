@@ -116,17 +116,36 @@ public class UITest {
         @DisplayName("Check that addContactUI prints the correct text")
         public void addContactUIPrintsCorrectText() {
             //Arrange
-            Scanner scanner = Mockito.mock(Scanner.class);
-            Mockito.when(scanner.next()).thenReturn("John Doe").thenReturn("07987463527").thenReturn("john@doe.com");
+            Scanner sc = Mockito.mock(Scanner.class);
+            Mockito.when(sc.nextLine()).thenReturn("John Doe").thenReturn("07987463527").thenReturn("john@doe.com");
             //String[] input = {"John Doe", "07987463527", "john@doe.com"};
             //Scanner sc = new Scanner(new ByteArrayInputStream(input));
             // Act
-            UI.addContactUI(scanner);
+            UI.addContactUI(sc);
+            //Assert
+            //trim removes whitespace
+            //replace removes line breaks(due to differences in line breaks between OSes)
+            assertEquals("""
+                    Please enter the name of the contact you would like to add
+                    Please enter the phone number of the contact you would like to add
+                    Please enter the email of the contact you would like to add""", outContent.toString().trim().replace("\r",""));
+        }
+
+        @Test
+        @DisplayName("Check that editContactUI prints the correct text")
+        public void editContactUIPrintsCorrectText() {
+            //Arrange
+            Scanner sc = Mockito.mock(Scanner.class);
+            Mockito.when(sc.nextLine()).thenReturn("07964759384").thenReturn("John Doe")
+                    .thenReturn("07987463527").thenReturn("john@doe.com");
+            // Act
+            UI.editContactUI(sc);
             //Assert
             assertEquals("""
-                    Please enter the name of the contact you would like to add\r
-                    Please enter the phone number of the contact you would like to add\r
-                    Please enter the email of the contact you would like to add""", outContent.toString().trim());
+                    Please enter the saved number of the contact you would like to edit
+                    Please enter the new name for the contactor press enter to leave it unchanged.
+                    Please enter the new phone number for the contactor press enter to leave it unchanged.
+                    Please enter the new email for the contactor press enter to leave it unchanged.""", outContent.toString().trim().replace("\r",""));
         }
 
 
@@ -140,10 +159,10 @@ public class UITest {
         public void addContactUIReturnsUserInput() {
             //Arrange
             String[] input = {"John Doe", "07987463527", "john@doe.com"};
-            Scanner scanner = Mockito.mock(Scanner.class);
-            Mockito.when(scanner.next()).thenReturn(input[0]).thenReturn(input[1]).thenReturn(input[2]);
+            Scanner sc = Mockito.mock(Scanner.class);
+            Mockito.when(sc.nextLine()).thenReturn(input[0]).thenReturn(input[1]).thenReturn(input[2]);
             // Act
-            String[] output = UI.addContactUI(scanner);
+            String[] output = UI.addContactUI(sc);
             //Assert
             assertAll(
                     () -> assertEquals(input[0], output[0]),
@@ -156,10 +175,10 @@ public class UITest {
         @DisplayName("Check that deleteContactUI returns user input")
         public void deleteContactUIReturnsUserInput() {
             //Arrange
-            Scanner scanner = Mockito.mock(Scanner.class);
-            Mockito.when(scanner.next()).thenReturn("07583746374");
+            Scanner sc = Mockito.mock(Scanner.class);
+            Mockito.when(sc.nextLine()).thenReturn("07583746374");
             // Act
-            String output = UI.deleteContactUI(scanner);
+            String output = UI.deleteContactUI(sc);
             //Assert
             assertEquals("07583746374",output);
 

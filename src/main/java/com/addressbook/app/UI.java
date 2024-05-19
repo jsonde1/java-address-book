@@ -31,7 +31,17 @@ public class UI {
         String email = sc.nextLine();
         return new String[] {name, phone, email};
     }
-
+    public static String[] editContactUI(Scanner sc) {
+        System.out.println("Please enter the saved number of the contact you would like to edit");
+        String oldNumber = sc.nextLine();
+        System.out.println("Please enter the new name for the contact\ror press enter to leave it unchanged.");
+        String name = sc.nextLine();
+        System.out.println("Please enter the new phone number for the contact\ror press enter to leave it unchanged.");
+        String phone = sc.nextLine();
+        System.out.println("Please enter the new email for the contact\ror press enter to leave it unchanged.");
+        String email = sc.nextLine();
+        return new String[] {name, phone, email};
+    }
     public static String deleteContactUI(Scanner sc) {
         System.out.println("Please enter the number of the contact you would like to delete");
         return sc.nextLine();

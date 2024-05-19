@@ -3,7 +3,7 @@ package com.addressbook.app;
 import java.util.ArrayList;
 
 public class AddressBook {
-    protected ArrayList<Contact> contactList = new ArrayList<Contact>();
+    private final ArrayList<Contact> contactList = new ArrayList<>();
 
     //Checks that new contact obj contact details do not already exist in contact list
     private boolean duplicateContactDetails(Contact contact) {
@@ -54,9 +54,9 @@ public class AddressBook {
     }
 
     //Edit email and name functionality to be added
-    public void editContact(String oldNumber, String name, String newNumber, String email) {
-        Contact contact = getContactByNumber(oldNumber);
+    public void editContact(String [] details) {
+        Contact contact = getContactByNumber(details[0]);
         if (contact == null) UI.printLine("Contact could not be found"); //Check needs to be done by Validator
-        else setDetails(contact, name, newNumber, email); //UI.PrintLine("No details have been given.");
+        else setDetails(contact, details[1], details[2], details[3]); //UI.PrintLine("No details have been given.");
     }
 }

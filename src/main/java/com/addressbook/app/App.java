@@ -28,7 +28,8 @@ public class App {
                     addressBook.deleteContact(number);
                     break;
                 case "4":
-                    //addressBook.editContact();
+                    String[] details = UI.editContactUI(sc);
+                    addressBook.editContact(details);
                     break;
                 case "5":
                     UI.printContacts(addressBook.getContactList());

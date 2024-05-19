@@ -132,7 +132,7 @@ public class AddressBookTest {
             Mockito.when(mockContact.getPhoneNumber()).thenReturn(input[0]);
             // Act
             addressBook.addContact(mockContact);
-            addressBook.editContact(input[0], input[1], input[2], input[3]);
+            addressBook.editContact(input);
             // Assert
             assertAll(
                     () -> verify(mockContact, times(1)).setName("John Doe"),
