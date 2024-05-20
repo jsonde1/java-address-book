@@ -175,6 +175,24 @@ public class AddressBookTest {
         }
 
         @Test
+        @DisplayName("Search By Name Should Successfully Return Matched Contacts in Alphabetical Order")
+        public void SearchByNameShouldSuccessfullyReturnMatchedContactsInAlphabeticOrder() {
+            // Arrange
+            Validator validator = mockValidator;
+            AddressBook addressBook = new AddressBook(validator);
+            Contact mockContact = mock(Contact.class);
+            Contact mockContact2 = mock(Contact.class);
+            getMockDetails(mockContact, "Marcus Darius","07837283422","johnny@job.com");
+            getMockDetails(mockContact2, "Abe Dani","07836241521","tim@barry.com");
+            // Act
+            addressBook.addContact(mockContact);
+            addressBook.addContact(mockContact2);
+            Contact[] contacts = addressBook.searchByName("Da");
+
+            // Assert
+            assertEquals("Abe Dani", contacts[0].getName());
+        }
+        @Test
         @DisplayName("Search By Email Should Successfully Return Matching Contacts")
         public void SearchByEmailShouldSuccessfullyReturnMatchingContacts() {
             // Arrange
@@ -264,6 +282,114 @@ public class AddressBookTest {
             assertEquals(0, contacts.length);
         }
 
+        @Test
+        @DisplayName("Search By Email Should Successfully Return Matched Contacts in Alphabetical Order")
+        public void SearchByEmailShouldSuccessfullyReturnMatchedContactsInAlphabeticOrder() {
+            // Arrange
+            Validator validator = mockValidator;
+            AddressBook addressBook = new AddressBook(validator);
+            Contact mockContact = mock(Contact.class);
+            Contact mockContact2 = mock(Contact.class);
+            getMockDetails(mockContact, "Johnny Darius","07837283422","johnny@job.com");
+            getMockDetails(mockContact2, "Tim Cook","07836241521","tim@barry.com");
+            // Act
+            addressBook.addContact(mockContact2);
+            addressBook.addContact(mockContact);
+            Contact[] contacts = addressBook.searchByEmail(".com");
+
+            // Assert
+            assertEquals("Johnny Darius", contacts[0].getName());
+        }
+
+        @Test
+        @DisplayName("Search By Phone Should Successfully Return Matching Contacts")
+        public void SearchByPhoneShouldSuccessfullyReturnMatchingContacts() {
+            // Arrange
+            Validator validator = mockValidator;
+            AddressBook addressBook = new AddressBook(validator);
+            Contact mockContact = mock(Contact.class);
+            Contact mockContact2 = mock(Contact.class);
+            getMockDetails(mockContact, "Johnny Darius","07837283422","johnny@job.com");
+            getMockDetails(mockContact2, "Tim Cook","07836241521","tim@barry.com");
+            // Act
+            addressBook.addContact(mockContact);
+            addressBook.addContact(mockContact2);
+            Contact[] contacts = addressBook.searchByPhone("07836241521");
+            // Assert
+            assertEquals("Tim Cook", contacts[0].getName());
+        }
+
+        @Test
+        @DisplayName("Search By Phone Should Return Empty if no Matching Contacts")
+        public void SearchByPhoneShouldReturnEmptyIfNoMatchingContacts() {
+            // Arrange
+            Validator validator = mockValidator;
+            AddressBook addressBook = new AddressBook(validator);
+            Contact mockContact = mock(Contact.class);
+            Contact mockContact2 = mock(Contact.class);
+            getMockDetails(mockContact, "Johnny Darius","07837283422","johnny@job.com");
+            getMockDetails(mockContact2, "Tim Cook","07836241521","tim@barry.com");
+            // Act
+            addressBook.addContact(mockContact);
+            addressBook.addContact(mockContact2);
+            Contact[] contacts = addressBook.searchByPhone("078345643453");
+            // Assert
+            assertEquals(0, contacts.length);
+        }
+
+        @Test
+        @DisplayName("Search By Phone Should Return Empty if empty input given")
+        public void SearchByPhoneShouldReturnEmptyIfNoInputGiven() {
+            // Arrange
+            Validator validator = mockValidator;
+            AddressBook addressBook = new AddressBook(validator);
+            Contact mockContact = mock(Contact.class);
+            Contact mockContact2 = mock(Contact.class);
+            getMockDetails(mockContact, "Johnny Darius","07837283422","johnny@job.com");
+            getMockDetails(mockContact2, "Tim Cook","07836241521","tim@barry.com");
+            // Act
+            addressBook.addContact(mockContact);
+            addressBook.addContact(mockContact2);
+            Contact[] contacts = addressBook.searchByPhone("");
+            // Assert
+            assertEquals(0, contacts.length);
+        }
+        @Test
+        @DisplayName("Search By Phone Should Successfully Return Partial Matched Contacts")
+        public void SearchByPhoneShouldSuccessfullyReturnPartialMatchedContacts() {
+            // Arrange
+            Validator validator = mockValidator;
+            AddressBook addressBook = new AddressBook(validator);
+            Contact mockContact = mock(Contact.class);
+            Contact mockContact2 = mock(Contact.class);
+            getMockDetails(mockContact, "Johnny Darius","07837283422","johnny@job.com");
+            getMockDetails(mockContact2, "Tim Cook","07836241521","tim@barry.com");
+            // Act
+            addressBook.addContact(mockContact);
+            addressBook.addContact(mockContact2);
+            Contact[] contacts = addressBook.searchByPhone("078");
+            // Assert
+            assertEquals(2, contacts.length);
+        }
+
+        @Test
+        @DisplayName("Search By Phone Should Successfully Return Matched Contacts in Alphabetical Order")
+        public void SearchByPhoneShouldSuccessfullyReturnMatchedContactsInAlphabeticOrder() {
+            // Arrange
+            Validator validator = mockValidator;
+            AddressBook addressBook = new AddressBook(validator);
+            Contact mockContact = mock(Contact.class);
+            Contact mockContact2 = mock(Contact.class);
+            getMockDetails(mockContact, "Johnny Darius","07837283422","johnny@job.com");
+            getMockDetails(mockContact2, "Tim Cook","07836241521","tim@barry.com");
+            // Act
+            addressBook.addContact(mockContact2);
+            addressBook.addContact(mockContact);
+            Contact[] contacts = addressBook.searchByPhone("078");
+
+            // Assert
+            assertEquals("Johnny Darius", contacts[0].getName());
+        }
     }
 
     @Nested

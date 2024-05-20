@@ -1,18 +1,14 @@
 package com.addressbook.app;
 
-//private Scanner scan;
 
 import java.util.Scanner;
 
 public class UI {
-    Validator validator;
-    UI(Validator validator) {
-        this.validator = validator;
-    }
+    private UI() {}
 
     public static void mainMenu() {
         System.out.println("\n Please type in the number of the option you would like to access! " +
-                "\n 1.Add a Contact \n 2.Search for Contact \n 3.Delete Contact \n 4.Update Contact \n 5.Show All Contacts \n 6.Exit");
+                "\n 1.Add a Contact \n 2.Search for Contact by Name \n 3.Search for Contact by Phone Number \n 4.Search for Contact by Email \n 5.Delete Contact \n 6.Delete All Contact \n 7.Update Contact \n 8.Show All Contacts \n 9.Exit");
     }
 
     public static void printLine(String s) {
@@ -56,7 +52,7 @@ public class UI {
         }
     }
 
-    public static boolean deleteAll(Scanner sc) {
+    public static boolean deleteAllUI(Scanner sc) {
         System.out.println("Are you sure you want to delete all contacts? Type 'y' to continue or press enter to abort.");
         String confirm = sc.nextLine();
         return confirm.equals("y");

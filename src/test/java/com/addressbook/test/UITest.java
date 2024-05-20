@@ -130,7 +130,7 @@ public class UITest {
             Scanner sc = Mockito.mock(Scanner.class);
             Mockito.when(sc.nextLine()).thenReturn("y");
             // Act
-            boolean confirm = UI.deleteAll(sc);
+            boolean confirm = UI.deleteAllUI(sc);
             //Assert
             assertTrue(confirm);
         }
@@ -140,7 +140,7 @@ public class UITest {
             Scanner sc = Mockito.mock(Scanner.class);
             Mockito.when(sc.nextLine()).thenReturn("");
             // Act
-            boolean confirm = UI.deleteAll(sc);
+            boolean confirm = UI.deleteAllUI(sc);
             //Assert
             assertFalse(confirm);
         }
@@ -151,7 +151,7 @@ public class UITest {
             Scanner sc = Mockito.mock(Scanner.class);
             Mockito.when(sc.nextLine()).thenReturn("Nobutyesbutno");
             // Act
-            boolean confirm = UI.deleteAll(sc);
+            boolean confirm = UI.deleteAllUI(sc);
             //Assert
             assertFalse(confirm);
         }

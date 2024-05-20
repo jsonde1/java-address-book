@@ -1,6 +1,6 @@
 package com.addressbook.app;
 import java.util.Scanner;
-//Add SEARCH BY EMAIL
+
 public class App {
     public static void main(String[] args) {
         //initialises object to receive user input
@@ -27,11 +27,23 @@ public class App {
                     String name = UI.printLine("Please enter the name of the contact you are looking for: ", sc);
                     UI.printContacts(addressBook.searchByName(name));
                     break;
-                case "3": //DeleteContact
+                case "3": //SearchByPhone
+                    String phone = UI.printLine("Please enter the Phone Number of the contact you are looking for: ", sc);
+                    UI.printContacts(addressBook.searchByPhone(phone));
+                    break;
+                case "4": //SearchByEmail
+                    String email = UI.printLine("Please enter the Email of the contact you are looking for: ", sc);
+                    UI.printContacts(addressBook.searchByEmail(email));
+                    break;
+                case "5": //DeleteContact
                     String number = UI.printLine("Please enter the number of the contact you would like to delete: ", sc);
                     addressBook.deleteContact(number);
                     break;
-                case "4": //EditContact
+                case "6": //DeleteAllContact
+                    boolean b = UI.deleteAllUI(sc);
+                    addressBook.deleteAllContact(b);
+                    break;
+                case "7": //EditContact
                     try {
                         String[] details = UI.editContactUI(sc);
                         addressBook.editContact(details);
@@ -40,10 +52,10 @@ public class App {
                         UI.printLine(e.getMessage());
                     }
                     break;
-                case "5": //PrintAllContacts
+                case "8": //PrintAllContacts
                     UI.printContacts(addressBook.getContactList());
                     break;
-                case "6": //Exit
+                case "9": //Exit
                     UI.printLine("This Address Book will now be closed.");
                     break;
                 default: //Illegal
@@ -51,6 +63,6 @@ public class App {
             }
         }
         // Will loop continuously until exited by the user
-        while (!option.equals("6"));
+        while (!option.equals("9"));
     }
 }
