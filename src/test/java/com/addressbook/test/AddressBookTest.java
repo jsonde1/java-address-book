@@ -6,6 +6,9 @@ import com.addressbook.app.Validator;
 import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,6 +16,8 @@ import static org.mockito.Mockito.*;
 
 public class AddressBookTest {
     Validator mockValidator = mock(Validator.class);
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
 
     void setMockValidatorTrue() {
         Mockito.when(mockValidator.validName(any())).thenReturn(true);
@@ -34,8 +39,15 @@ public class AddressBookTest {
         Mockito.when(mockContact.getEmail()).thenReturn(email);
     }
 
+
     @BeforeEach void setUp() {
         setMockValidatorTrue();
+        //Removes print to console
+        System.setOut(new PrintStream(outContent));
+    }
+    @AfterEach void tearDown() {
+        //restores print to console
+        System.setOut(originalOut);
     }
 
     @Nested

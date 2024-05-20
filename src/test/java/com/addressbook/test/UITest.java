@@ -42,7 +42,7 @@ public class UITest {
             UI.mainMenu();
             //Assert
             assertEquals("Please type in the number of the option you would like to access! " +
-            "\n 1.Add a Contact \n 2.Search for Contact \n 3.Delete Contact \n 4.Update Contact \n 5.Show All Contacts \n 6.Exit", outContent.toString().trim());
+                         "\n 1.Add a Contact \n 2.Search for Contact by Name \n 3.Search for Contact by Phone Number \n 4.Search for Contact by Email \n 5.Delete Contact \n 6.Delete All Contact \n 7.Update Contact \n 8.Show All Contacts \n 9.Exit", outContent.toString().trim());
         }
 
         @Test
@@ -116,7 +116,7 @@ public class UITest {
             // Act
             UI.editContactUI(sc);
             //Assert
-            assertEquals("Please enter the saved number of the contact you would like to edit\rPlease enter the new name for the contact or press enter to leave it unchanged.\rPlease enter the new phone number for the contact or press enter to leave it unchanged.\rPlease enter the new email for the contact or press enter to leave it unchanged.".replace("\r",""), outContent.toString().trim().replace("\r",""));
+            assertEquals("Please enter the saved number of the contact you would like to edit\rPlease enter the new name for the contact or press enter to leave it unchanged.\rPlease enter the new phone number for the contact or press enter to leave it unchanged.\rPlease enter the new email for the contact or press enter to leave it unchanged.".replaceAll("\\s+",""), outContent.toString().trim().replaceAll("\\s+",""));
         }
 
 
