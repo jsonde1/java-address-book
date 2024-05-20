@@ -1,4 +1,4 @@
-package com.addressbook.app;
+package com.addressbook.app.utility;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

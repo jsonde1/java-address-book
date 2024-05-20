@@ -1,5 +1,7 @@
-package com.addressbook.app;
+package com.addressbook.app.utility;
 
+
+import com.addressbook.app.Contact;
 
 import java.util.Scanner;
 

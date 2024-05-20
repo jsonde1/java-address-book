@@ -2,7 +2,7 @@ package com.addressbook.test;
 
 import com.addressbook.app.AddressBook;
 import com.addressbook.app.Contact;
-import com.addressbook.app.Validator;
+import com.addressbook.app.utility.Validator;
 import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
 

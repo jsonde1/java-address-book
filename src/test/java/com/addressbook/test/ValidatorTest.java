@@ -1,7 +1,5 @@
 package com.addressbook.test;
-import com.addressbook.app.UI;
-import com.addressbook.app.Validator;
-import org.junit.Assert;
+import com.addressbook.app.utility.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

@@ -1,12 +1,11 @@
 package com.addressbook.test;
 
 import com.addressbook.app.Contact;
-import com.addressbook.app.UI;
+import com.addressbook.app.utility.UI;
 
 import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;

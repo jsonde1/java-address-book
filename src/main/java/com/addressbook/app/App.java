@@ -1,4 +1,7 @@
 package com.addressbook.app;
+import com.addressbook.app.utility.UI;
+import com.addressbook.app.utility.Validator;
+
 import java.util.Scanner;
 
 public class App {
