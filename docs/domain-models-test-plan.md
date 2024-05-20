@@ -165,3 +165,6 @@
 
 ### Kanban Board 
 ![Alt text](./img/Kanban.png?raw=true "Kanban Board")
+
+### Class Diagram
+![Alt text](./img/Class_Diagram.png?raw=true "Class Diagram")

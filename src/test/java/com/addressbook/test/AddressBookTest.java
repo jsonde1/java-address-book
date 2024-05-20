@@ -483,7 +483,7 @@ public class AddressBookTest {
             AddressBook addressBook = new AddressBook(mockValidator);
             Contact mockContact = mock(Contact.class);
             String[] input = {"07393664832", "John Doe", "07563888342", "john@apple.com"};
-            getMockDetails(mockContact,null,input[0],null);
+            getMockDetails(mockContact,"Julian Wright",input[0],"julian@wright.com");
             // Act
             addressBook.addContact(mockContact);
             addressBook.editContact(input);
@@ -504,7 +504,7 @@ public class AddressBookTest {
             String[] input = {"07393664832",
                     "RhoshandiatellyneshiaunneveshenkfdijldsfjiRhoshandiatellyneshiaunneveshenkfdijldsfji Rhoshandiatellyneshiaunneveshenkfdijldsfji",
                     "07563888342", "john@apple.com"};
-            getMockDetails(mockContact,null,input[0],null);
+            getMockDetails(mockContact,"Jonny Doe",input[0],"johnny@doe.com");
             // Act
             addressBook.addContact(mockContact);
             addressBook.editContact(input);
@@ -523,7 +523,7 @@ public class AddressBookTest {
             AddressBook addressBook = new AddressBook(mockValidator);
             Contact mockContact = mock(Contact.class);
             String[] input = {"07393664832", "", "", "john@apple.com"};
-            getMockDetails(mockContact,null,input[0],null);
+            getMockDetails(mockContact,"James Munk",input[0],"james@munk.com");
             // Act
             addressBook.addContact(mockContact);
             addressBook.editContact(input);
@@ -543,7 +543,7 @@ public class AddressBookTest {
             Contact mockContact = mock(Contact.class);
             String[] input = {"07393664832", "Jamie Dang", "", "john@apple.com"};
             Mockito.when(mockContact.getPhoneNumber()).thenReturn(input[0]);
-            getMockDetails(mockContact,null,input[0],null);
+            getMockDetails(mockContact,"Michal Kane",input[0],"micheal@kane.com");
             // Act
             addressBook.addContact(mockContact);
             addressBook.editContact(input);

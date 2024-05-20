@@ -11,10 +11,10 @@ public class AddressBook  {
     }
 
     //Checks that new contact obj contact details do not already exist in contact list
-    private boolean duplicateContactDetails(Contact contact) {
+    private boolean duplicateContactDetails(String phoneNumber, String email) {
         for (Contact c : contactList) {
-            if (c.getPhoneNumber().equals(contact.getPhoneNumber())) return true;
-            if (c.getEmail().equals(contact.getEmail())) return true;
+            if (c.getPhoneNumber().equals(phoneNumber)) return true;
+            if (c.getEmail().equals(email)) return true;
         }
         return false;
     }
@@ -41,7 +41,7 @@ public class AddressBook  {
     }
 
     public void addContact(Contact contact) {
-        if (duplicateContactDetails(contact)) UI.printLine("Contact Already Exists\n");
+        if (duplicateContactDetails(contact.getPhoneNumber(), contact.getEmail())) UI.printLine("Contact Already Exists\n");
         else {
             validatorChecks(contact.getName(), contact.getPhoneNumber(), contact.getEmail());
             this.contactList.add(contact);
@@ -113,7 +113,7 @@ Phone Number is unique so will only ever have one match */
 
 
 
-
+//implement data duplication check for edit/set
     private void setDetails(Contact contact, String name, String phoneNumber, String email) {
         validatorChecks(name, phoneNumber, email,true);
         if(!name.isEmpty()) contact.setName(name);
@@ -125,7 +125,8 @@ Phone Number is unique so will only ever have one match */
     //Checks that contact is in address book before invoking setDetails on said contact
     public void editContact(String [] details) {
         Contact contact = getContactByNumber(details[0]);
-        if(contact != null) setDetails(contact, details[1], details[2], details[3]);
+        if (duplicateContactDetails(details[2], details[3])) UI.printLine("Contact Already Exists\n");
+        else if(contact != null) setDetails(contact, details[1], details[2], details[3]);
     }
 
     public void deleteAllContact(boolean b) {
